@@ -1,0 +1,9 @@
+.status {
+  display: inline;
+  padding: 5px 10px;
+  background-color: #3f51b5;
+  border-radius: 7px;
+}
+.status__text {
+  color: #fff;
+}

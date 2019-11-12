@@ -1,0 +1,33 @@
+.ag-theme-material {
+  font-family: "Poppins", sans-serif;
+}
+.ag-selection-checkbox .ag-icon.ag-icon-checkbox-checked {
+    color: #3f51b5;
+  }
+.ag-theme-material .ag-icon-checkbox-checked {
+  color: #3f51b5;
+}
+
+.t-default__header {
+   padding: 0 5px !important;
+   text-align: center;
+}
+.t-default__header .ag-header-cell,
+.t-default__header .ag-header-text {
+   width: 100%
+}
+.t-default__cell {
+  padding: 0 5px !important;
+}
+.t-default__cell._align-center {
+  display: flex;
+  align-items: center;
+}
+.t-default__cell._wrap {
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.4;
+}
+.t-default__cell._underlined {
+  text-decoration: underline;
+}

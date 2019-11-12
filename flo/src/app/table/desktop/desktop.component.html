@@ -1,0 +1,17 @@
+<ag-grid-angular
+  style="width: 100%; height: 500px"
+  class="ag-theme-material _custom"
+  [context]="{componentParent: this}"
+  [rowData]="rowData"
+  [columnDefs]="columnDefs"
+  [rowHeight]="rowHeight"
+  [suppressCellSelection]="true"
+  [suppressRowClickSelection]="true"
+  [rowSelection]="'multiple'"
+  (gridReady)="onGridReady($event)"
+  (gridSizeChanged)="updateTableSize()"
+  (firstDataRendered)="onFirstDataRendered($event)"
+  (rowSelected)="rowSelection.emit($event);"
+  (selectionChanged)="selectionChanged.emit($event);"
+  (cellClicked)="$event['colDef']['headerName'] === 'chat' && openDetailsModal($event.data)">
+</ag-grid-angular>
