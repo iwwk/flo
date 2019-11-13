@@ -1,0 +1,10 @@
+.actions-btn {
+  background-color: rgba(230, 230, 232, 0.8);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 17px;
+}
+.actions-btn-icon {
+    font-size: 17px;
+}

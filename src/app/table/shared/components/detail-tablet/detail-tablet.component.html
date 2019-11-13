@@ -1,0 +1,55 @@
+<table class="detail-tablet">
+  <thead class="detail-tablet__row">
+    <th>status</th>
+    <th>s-date/ e-date</th>
+    <th>date of service</th>
+    <th>daily rate</th>
+    <th>gross payment</th>
+    <th>liability</th>
+    <th>net payment</th>
+    <th class="_align-center">total</th>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let row of rows;  let i = index; let isFirst = first">
+      <tr class="detail-tablet__row" *ngIf="!row.warningType">
+        <td class="detail-tablet__cell">{{row.status}}</td>
+        <td class="detail-tablet__cell">{{row.startDate}} - {{row.endDate}}</td>
+        <td class="detail-tablet__cell">{{row.dateOfService}}</td>
+        <td class="detail-tablet__cell">{{row.dailyRate.from}} - {{row.dailyRate.to}}</td>
+        <td class="detail-tablet__cell">{{row.grossPayment}}</td>
+        <td class="detail-tablet__cell">{{row.liability.from}} - {{row.liability.to}}</td>
+        <td class="detail-tablet__cell">{{row.netPayment}}</td>
+        <td *ngIf="isFirst" class="detail-tablet__cell _total" [rowSpan]="rows.length">{{tableData.data.total}}</td>
+      </tr>
+      <tr class="detail-tablet__message" *ngIf="row.warningType">
+        <td class="detail-tablet__cell"
+            colspan="7">
+          <div style="padding: 0">
+            <table class="message">
+              <tr class="detail-tablet__row">
+                <td colspan="6" class="message-text">Med pending patient is not eligibl for payment. Please provide
+                  proof of caverage
+                </td>
+                <td class="message-cell _btn">
+                  <button class="message-button"
+                          mat-raised-button color="warn"
+                          (click)="uploadInfo($event)">Upload</button>
+                </td>
+              </tr>
+              <tr class="detail-tablet__row">
+                <td class="detail-tablet__cell"><span style="padding-left: 7px">{{row.status}}</span></td>
+                <td class="detail-tablet__cell">{{row.startDate}} - {{row.endDate}}</td>
+                <td class="detail-tablet__cell">{{row.dateOfService}}</td>
+                <td class="detail-tablet__cell">{{row.dailyRate.from}} - {{row.dailyRate.to}}</td>
+                <td class="detail-tablet__cell">{{row.grossPayment}}</td>
+                <td class="detail-tablet__cell">{{row.liability.from}} - {{row.liability.to}}</td>
+                <td class="detail-tablet__cell">{{row.netPayment}}</td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+

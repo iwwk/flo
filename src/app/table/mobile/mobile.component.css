@@ -1,0 +1,83 @@
+.wrapper {
+  width: 100%;
+  padding: 5px 5px;
+  overflow: hidden;
+  align-items: center;
+}
+.wrapper ._total {
+    border-top: 1px solid #babbad;
+    font-weight: 600;
+    z-index: 2;
+    overflow: hidden;
+}
+.patient-card {
+  background-color: #f8f5f5;
+  overflow: hidden;
+  z-index: 3;
+  max-width: 750px;
+  width: 100%;
+}
+.patient-card__header {
+    z-index: 55;
+}
+.patient-card__header-status {
+      display: inline;
+      padding: 0 10px;
+      background-color: #415bec;
+      border-radius: 5px;
+      line-height: 22px;
+      max-width: 75px;
+      width: 100%;
+}
+.patient-card__header-status-text {
+   font-size: 14px;
+   color: #fff;
+   white-space: nowrap;
+ }
+.patient-card__header-status .btn-action-wrapper {
+  justify-content: end
+}
+.actions-btn {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  line-height: 17px;
+  background-color: rgba(230, 230, 232, 0.8);
+}
+.actions-btn-icon {
+   font-size: 17px
+}
+
+.patient-card__body-details-title {
+  font-size: 16px;
+}
+.patient-card__body-details-title .message-button {
+  line-height: 20px;
+  width: 110px;
+  display: inline-block;
+  margin-left: 10px
+}
+
+.patient-card__body-details._warning-message {
+  background-color: #ffb22b
+}
+
+dt {
+  float: left;
+  padding-right: 5px;
+  min-height: 1px;
+  text-align: start;
+  width: 50%;
+}
+dd {
+  width: 100%;
+  position: relative;
+  top: -1px;
+  margin-bottom: 10px;
+  text-align: end;
+  margin-left: 0;
+}
+
+
+
+

@@ -1,0 +1,14 @@
+<div (window:resize)="updateWindowWidth()">
+  <desktop *ngIf="!showMobile"
+            (openChat)="openChat($event)"
+            (uploadInfo)="uploadInfo($event)"
+            (edit)="edit($event)"
+            (rowSelection)="onRowSelection($event)"
+            (selectionChanged)="onSelectionChanged($event)"
+  ></desktop>
+  <mobile *ngIf="showMobile"
+          (openChat)="openChat($event)"
+          (edit)="edit($event)"
+          (selectedChange)="selectedChange($event)"
+          (uploadInfo)="uploadInfo($event)"></mobile>
+</div>
