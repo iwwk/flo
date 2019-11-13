@@ -1,10 +1,13 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { HospicePatient } from '../../../models/hospice-patient.model';
 
 @Component({
   selector: 'responsive-table',
   templateUrl: './responsive-table.component.html',
 })
-export class ResponsiveTableComponent  implements OnInit{
+export class ResponsiveTableComponent implements OnInit{
+  @Input() rowData: HospicePatient[];
+
   public windowWidth: number;
   public desktopMaxWidth = 1024;
   public showMobile: boolean;

@@ -1,10 +1,11 @@
-import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { patientDataService } from '../../sevices/pacient-data/pacient-data.service';
-import { ColumnApi, GridApi } from 'ag-grid-community';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation, Input } from '@angular/core';
+import { ColumnApi, GridApi, AllCommunityModules } from '@ag-grid-community/all-modules';
 import { ActionsBtnComponent } from '../shared/components/actions-btn/actions-btn.component';
 import { ChatActionsComponent } from '../shared/components/chat-actions/chat-actions.component';
 import { DetailTablet } from '../shared/components/detail-tablet/detail-tablet.component';
 import { StatusComponent } from '../shared/components/status/status.component';
+import { HospicePatient } from '../../models/hospice-patient.model';
+import { PatientNameComponent } from '../shared/components/patient-name/patient-name.component';
 
 @Component({
   selector: 'desktop',
@@ -13,19 +14,20 @@ import { StatusComponent } from '../shared/components/status/status.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class DesktopTable implements OnInit {
+  @Input() rowData: HospicePatient[];
   @Output() openChat: EventEmitter<any> = new EventEmitter();
   @Output() uploadInfo: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
   @Output() rowSelection: EventEmitter<any> = new EventEmitter();
   @Output() selectionChanged: EventEmitter<any> = new EventEmitter();
 
+  public modules = AllCommunityModules;
   public columnApi: ColumnApi;
   public gridApi: GridApi;
   private rowHeight;
   private columnDefs;
-  public rowData;
 
-  constructor(private readonly patientDataService: patientDataService) {
+  constructor() {
     this.columnDefs = [
       {
         headerName: '',
@@ -41,7 +43,7 @@ export class DesktopTable implements OnInit {
         suppressSizeToFit: true,
       },
       {
-        headerName: 'chat',
+        headerName: '',
         colId: 'chat',
         cellRendererFramework: ChatActionsComponent,
         maxWidth: 40,
@@ -50,9 +52,9 @@ export class DesktopTable implements OnInit {
         suppressSizeToFit: true,
       },
       {
-        headerName: 'started',
-        colId: 'started',
-        field: 'model',
+        headerName: 'Status',
+        colId: 'status',
+        field: 'status',
         cellRendererFramework: StatusComponent,
         maxWidth: 105,
         minWidth: 100,
@@ -61,26 +63,27 @@ export class DesktopTable implements OnInit {
         suppressSizeToFit: true,
       },
       {
-        headerName: 'name',
-        colId: 'name',
-        field: 'name',
+        headerName: 'Patient',
+        colId: 'patientName',
+        field: 'model',
+        cellRendererFramework: PatientNameComponent,
         maxWidth: 150,
         minWidth: 70,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center _wrap _underlined',
       },
       {
-        headerName: 'hospice',
+        headerName: 'Hospice',
         colId: 'hospice',
-        field: 'hospice',
+        field: 'snfHistory[0].snfName',
         minWidth: 70,
         maxWidth: 901,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center _wrap',
       },
       {
-        headerName: 'service info',
-        colId: 'secondTable',
+        headerName: 'Service Info',
+        colId: 'serviceInfo',
         field: 'model',
         headerClass: 't-default__header',
         cellClass: 't-default__cell',
@@ -89,7 +92,7 @@ export class DesktopTable implements OnInit {
         maxWidth: 1000,
       },
       {
-        headerName: 'action',
+        headerName: '',
         colId: 'actions',
         field: 'price',
         cellRendererFramework: ActionsBtnComponent,
@@ -103,7 +106,6 @@ export class DesktopTable implements OnInit {
 }
 
   public ngOnInit(): void {
-    this.rowData = this.patientDataService.patientData;
   }
 
   public onGridReady(param: any): void {
@@ -112,7 +114,7 @@ export class DesktopTable implements OnInit {
   }
 
   public updateTableSize(): void {
-    this.columnApi.autoSizeColumns(['checkbox', 'chat', 'started', 'secondTable', 'actions']);
+    this.columnApi.autoSizeColumns(['checkbox', 'chat', 'status', 'serviceInfo', 'actions']);
     this.gridApi.sizeColumnsToFit();
     this.gridApi.resetRowHeights();
   }

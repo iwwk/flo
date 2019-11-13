@@ -1,108 +1,125 @@
 <div class="wrapper"
      fxLayout="column"
      fxLayoutGap="15px">
-    <mat-card class="patient-card"
-              fxLayoutGap="5px"
-              fxLayout="column"
-              *ngFor="let item of patientData">
-      <div class="animation-wrapper">
-      </div>
-      <mat-card class="patient-card__header"
-                fxLayout="column">
-        <mat-card-title fxLayout="row">
-          <div fxLayout="row"
-               fxLayoutAlign="center center"
-               fxLayoutGap="10px">
-            <mat-checkbox color="primary"
-                          (change)="selectedChange.emit($event)"></mat-checkbox>
-            <div class="patient-card__header-status">
-              <span class="patient-card__header-status-text">{{item.started}}</span>
-            </div>
-            <button class="actions-btn"
-                    color="primary"
-                    (click)="openChat.emit(item)"
-                    mat-icon-button
-                    type="button"
-                    [title]="'Chat'">
-              <mat-icon class="actions-btn-icon">chat</mat-icon></button>
+  <mat-card class="patient-card"
+            fxLayoutGap="5px"
+            fxLayout="column"
+            *ngFor="let item of rowData">
+    <div class="animation-wrapper">
+    </div>
+    <mat-card class="patient-card__header"
+              fxLayout="column">
+      <mat-card-title fxLayout="row">
+        <div fxLayout="row"
+             fxLayoutAlign="center center"
+             fxLayoutGap="10px">
+          <mat-checkbox color="primary"
+                        (change)="selectedChange.emit($event)"></mat-checkbox>
+          <div>
+            <span class="label" [ngClass]="tableData?.data?.status?.status == 4 ? 'label-success': 'label-info'">{{getStatusText(item?.status?.status||1)}}</span>
           </div>
-          <div class="btn-action-wrapper" fxFlex="100%" fxLayoutAlign="end end" fxLayout="row" fxLayoutGap="10px">
-            <button *ngIf="true" class="actions-btn"
-                    mat-icon-button
-                    type="button"
-                    color="primary"
-                    (click)="item.show = !item.show">
-              <mat-icon *ngIf="item.show"  class="actions-btn-icon">expand_less</mat-icon>
-              <mat-icon *ngIf="!item.show"  class="actions-btn-icon">expand_more</mat-icon>
-            </button>
-            <button *ngIf="true" class="actions-btn"
-                    mat-icon-button
-                    color="primary"
-                    type="button"
-                    (click)="edit.emit(item)"
-                    title="Edit">
-              <mat-icon class="actions-btn-icon">mode_edit</mat-icon>
-            </button>
-          </div>
-        </mat-card-title>
-        <mat-card-content>
-          <dl fxFlex="100%">
-            <dt>name</dt>
-            <dd>{{item.name}}</dd>
-            <dt>hospice</dt>
-            <dd>{{item.hospice}}</dd>
-            <dt >total</dt>
-            <dd class="_total">{{item.total}}</dd>
-          </dl>
-        </mat-card-content>
-      </mat-card>
-      <ng-container *ngIf="item.show">
-        <div class="patient-card__body"
-             fxLayout="column"
-             fxLayoutGap="10px"
-             [@slideToggle]
-             *ngFor="let serviceInfo of item.detailsTable">
-          <mat-card class="patient-card__body-details _warning-message"
-                    [class._warning-message]="serviceInfo.warningType"
-                    fxLayout="column">
-            <mat-card-title class="patient-card__body-details-title"
-                            fxLayout="column"
-                            *ngIf="serviceInfo.warningType">
-            <span>Med pending patient is not eligibl for payment. Please provide proof of caverage
-            <button class="message-button"
-                    mat-raised-button
-                    color="warn"
-                    (click)="uploadInfo.emit(serviceInfo)">Upload</button></span>
-            </mat-card-title>
-            <dl fxFlex="100%">
-              <dt>status</dt>
-              <dd>{{serviceInfo.status}}</dd>
-
-              <dt>s-date</dt>
-              <dd>{{serviceInfo.startDate}}</dd>
-
-              <dt>e-date</dt>
-              <dd>{{serviceInfo.startDate}}</dd>
-
-              <dt>date of service</dt>
-              <dd>{{serviceInfo.dateOfService}}</dd>
-
-              <dt>daily rate</dt>
-              <dd>{{serviceInfo.dailyRate.from}}-{{serviceInfo.dailyRate.to}}</dd>
-
-              <dt>gross payment</dt>
-              <dd>{{serviceInfo.grossPayment}}</dd>
-
-              <dt>liability</dt>
-              <dd>{{serviceInfo.liability.from}}-{{serviceInfo.liability.to}}</dd>
-
-              <dt>net payment</dt>
-              <dd>{{serviceInfo.netPayment}}</dd>
-            </dl>
-          </mat-card>
+          <button class="actions-btn"
+                  color="primary"
+                  (click)="openChat.emit(item)"
+                  mat-icon-button
+                  type="button"
+                  [title]="'Chat'">
+            <mat-icon class="actions-btn-icon">chat</mat-icon>
+          </button>
         </div>
-      </ng-container>
+        <div class="btn-action-wrapper" fxFlex="100%" fxLayoutAlign="end end" fxLayout="row" fxLayoutGap="10px">
+          <button *ngIf="true" class="actions-btn"
+                  mat-icon-button
+                  type="button"
+                  color="primary"
+                  (click)="item.show = !item.show">
+
+            <mat-icon *ngIf="item.show" class="actions-btn-icon">expand_less</mat-icon>
+            <mat-icon *ngIf="!item.show" class="actions-btn-icon">expand_more</mat-icon>
+          </button>
+          <button *ngIf="true" class="actions-btn"
+                  mat-icon-button
+                  color="primary"
+                  type="button"
+                  (click)="edit.emit(item)"
+                  title="Edit">
+            <mat-icon class="actions-btn-icon">mode_edit</mat-icon>
+          </button>
+        </div>
+      </mat-card-title>
+      <mat-card-content>
+        <dl fxFlex="100%">
+          <dt>Patient</dt>
+          <dd>{{item.lastName}} {{item.firstName}}</dd>
+          <!--<dt>Hospice</dt>
+          <dd></dd>-->
+          <dt>Total</dt>
+          <dd class="_total">${{getTotal(item) | number:'1.2-2'}}</dd>
+        </dl>
+      </mat-card-content>
     </mat-card>
+    <ng-container *ngIf="item.show">
+      <div class="patient-card__body"
+           fxLayout="column"
+           fxLayoutGap="10px"
+           [@slideToggle]
+           *ngFor="let info of item.serviceInfos">
+        <mat-card class="patient-card__body-details _warning-message"
+                  [class._warning-message]="item.isPrivatePay || item.isMedPendingwarningType"
+                  fxLayout="column">
+          <mat-card-title class="patient-card__body-details-title"
+                          fxLayout="column"
+                          *ngIf="item.isPrivatePay || item.isMedPendingwarningType">
+            <span>
+              Med pending patient is not eligibl for payment. Please provide proof of caverage
+              <button class="message-button"
+                      mat-raised-button
+                      color="warn"
+                      (click)="uploadInfo.emit(serviceInfo)">
+                Upload
+              </button>
+            </span>
+          </mat-card-title>
+          <dl fxFlex="100%">
+            <dt>Status</dt>
+            <dd></dd>
+
+            <dt>Service Dates</dt>
+            <dd>
+              <div [ngClass]="{'crossed': info.isDeleted, 'bolder': info.isAdded}">
+                {{info.startDate | date:'MM/dd/yy'}}-{{info.endDate | date:'MM/dd/yy'}}
+              </div>
+            </dd>
+
+            <dt>DOS</dt>
+            <dd>{{getDateDiff(info)}}</dd>
+
+            <dt>Daily Rate</dt>
+            <dd>
+              <div>
+                <span *ngIf="info.snfDailyRate != null && info.snfDailyRate != info.dailyRate" class="bolder p-r-10">${{info.snfDailyRate}}</span>
+                <span *ngIf="info.dailyRate != null" [ngClass]="{'crossed': info.snfDailyRate != null && info.snfDailyRate != info.dailyRate}">${{info.dailyRate}}</span>
+              </div>
+            </dd>
+
+            <dt>Gross Payment</dt>
+            <dd>${{getDateDiff(info)*(info.snfDailyRate||info.dailyRate||0) | number:'1.2-2'}}</dd>
+
+            <dt>Liability</dt>
+            <dd>
+              <div>
+                <span *ngIf="info.snfLiability != null && info.snfLiability!=info.liability " class="bolder p-r-10">${{info.snfLiability}}</span>
+                <span *ngIf="info.liability != null" [ngClass]="{'crossed': info.snfLiability != null && info.snfLiability!=info.liability }">${{info.liability}}</span>
+              </div>
+            </dd>
+
+            <dt>Net Payment</dt>
+            <dd>${{getDateDiff(info)*(info.snfDailyRate||info.dailyRate||0) - info.snfLiability||info.liability||0 | number:'1.2-2'}}</dd>
+          </dl>
+        </mat-card>
+      </div>
+    </ng-container>
+  </mat-card>
 </div>
 
 

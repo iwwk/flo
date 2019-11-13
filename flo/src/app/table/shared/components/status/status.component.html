@@ -1,3 +1,3 @@
-<div class="status">
-  <span class="status__text">{{tableData?.data?.started}}</span>
+<div>
+  <span class="label" [ngClass]="tableData?.data?.status?.status == 4 ? 'label-success': 'label-info'">{{getStatusText(tableData?.data?.status?.status||1)}}</span>
 </div>

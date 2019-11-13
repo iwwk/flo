@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PATIENT_STATUSES } from '../../../../models/patient-status.enum';
 
 @Component({
   selector: 'status',
@@ -10,5 +11,9 @@ export class StatusComponent {
 
   public agInit(tableData): void {
     this.tableData = tableData;
+  }
+
+  getStatusText(status) {
+    return PATIENT_STATUSES.find(s => s.id == status).text;
   }
 }

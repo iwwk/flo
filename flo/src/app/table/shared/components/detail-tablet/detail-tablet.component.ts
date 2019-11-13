@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import * as moment from 'moment';
+import { Moment } from 'moment';
 
 @Component({
   selector: 'detail-tablet',
@@ -13,12 +15,23 @@ export class DetailTablet implements OnInit {
 
   public agInit(tableData): void {
     this.tableData = tableData;
-    this.rows = tableData.data.detailsTable;
+    debugger;
+    this.rows = tableData.data.serviceInfos;
   }
 
   public ngOnInit(): void {}
 
   public uploadInfo(data): void {
     this.tableData.context.componentParent.upload(data);
+  }
+
+  getDateDiff(date) {
+    var a = moment(date.startDate);
+    var b = moment(date.endDate);
+    return b.diff(a, 'days') + 1; 
+  }
+
+  getTotal() {
+    return this.tableData.data.serviceInfos.filter(info => !info.isDeleted).reduce((total, info) => total + this.getDateDiff(info) * (info.snfDailyRate || info.dailyRate || 0) - info.snfLiability || info.liability || 0, 0);
   }
 }

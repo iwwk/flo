@@ -1,6 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { patientDataService } from '../../sevices/pacient-data/pacient-data.service';
+import { HospicePatient } from '../../models/hospice-patient.model';
+import * as moment from 'moment';
+import { Moment } from 'moment';
+import { PATIENT_STATUSES } from '../../models/patient-status.enum';
 
 @Component({
   selector: 'mobile',
@@ -18,18 +21,25 @@ import { patientDataService } from '../../sevices/pacient-data/pacient-data.serv
     ]),
   ],
 })
-export class MobileTable implements OnInit {
+export class MobileTable {
+  @Input() rowData: HospicePatient[];
   @Output() openChat: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
   @Output() selectedChange: EventEmitter<any> = new EventEmitter();
   @Output() uploadInfo: EventEmitter<any> = new EventEmitter();
 
-  public patientData: any;
-
-
-  public ngOnInit(): void {
-    this.patientData = this.patientDataService.patientData;
+  constructor() { }
+  getDateDiff(date) {
+    var a = moment(date.startDate);
+    var b = moment(date.endDate);
+    return b.diff(a, 'days') + 1;
   }
 
-  constructor(private readonly patientDataService: patientDataService) {}
+  getTotal(element) {
+    return element.serviceInfos.filter(info => !info.isDeleted).reduce((total, info) => total + this.getDateDiff(info) * (info.snfDailyRate || info.dailyRate || 0) - info.snfLiability || info.liability || 0, 0);
+  }
+
+  getStatusText(status) {
+    return PATIENT_STATUSES.find(s => s.id == status).text;
+  }
 }
