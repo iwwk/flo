@@ -16,17 +16,16 @@ import { PatientNameComponent } from '../shared/components/patient-name/patient-
 export class DesktopTable implements OnInit {
   @Input() rowData: HospicePatient[];
   @Output() openChat: EventEmitter<any> = new EventEmitter();
-  @Output() uploadInfo: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
-  @Output() rowSelection: EventEmitter<any> = new EventEmitter();
-  @Output() selectionChanged: EventEmitter<any> = new EventEmitter();
+  @Output() uploadInfo: EventEmitter<any> = new EventEmitter();
+  @Output() patientChecked: EventEmitter<any> = new EventEmitter();
+  @Output() checkBoxValueChange: EventEmitter<any> = new EventEmitter();
 
   public modules = AllCommunityModules;
   public columnApi: ColumnApi;
   public gridApi: GridApi;
   private rowHeight;
   private columnDefs;
-  private domLayout;
 
   constructor() {
     this.columnDefs = [
@@ -58,10 +57,9 @@ export class DesktopTable implements OnInit {
         field: 'status',
         cellRendererFramework: StatusComponent,
         maxWidth: 105,
-        minWidth: 100,
+        minWidth: 80,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center',
-        suppressSizeToFit: true,
       },
       {
         headerName: 'Patient',
@@ -80,6 +78,7 @@ export class DesktopTable implements OnInit {
         valueGetter: params => params.data.snfHistory[0].snfName,
         minWidth: 70,
         maxWidth: 901,
+        autoHeight: true,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center _wrap',
       },

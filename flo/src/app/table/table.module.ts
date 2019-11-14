@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AgGridModule } from '@ag-grid-community/angular';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { ActionsBtnComponent } from './shared/components/actions-btn/actions-btn.component';
 import { ChatActionsComponent } from './shared/components/chat-actions/chat-actions.component';
 import { DetailTablet } from './shared/components/detail-tablet/detail-tablet.component';
@@ -32,6 +33,8 @@ import { PatientNameComponent } from './shared/components/patient-name/patient-n
       PatientNameComponent,
       DetailTablet,
     ]),
+    // check your import!!!FlexLayoutModule for mobile version
+    FlexLayoutModule,
   ],
   exports: [
     ResponsiveTableComponent,

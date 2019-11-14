@@ -1,8 +1,7 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { HospicePatient } from '../../models/hospice-patient.model';
 import * as moment from 'moment';
-import { Moment } from 'moment';
 import { PATIENT_STATUSES } from '../../models/patient-status.enum';
 
 @Component({
@@ -25,21 +24,32 @@ export class MobileTable {
   @Input() rowData: HospicePatient[];
   @Output() openChat: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
-  @Output() selectedChange: EventEmitter<any> = new EventEmitter();
   @Output() uploadInfo: EventEmitter<any> = new EventEmitter();
+  @Output() checkBoxValueChange: EventEmitter<any> = new EventEmitter();
+  @Output() patientChecked: EventEmitter<any> = new EventEmitter();
+
 
   constructor() { }
   getDateDiff(date) {
-    var a = moment(date.startDate);
-    var b = moment(date.endDate);
+    const a = moment(date.startDate);
+    const b = moment(date.endDate);
     return b.diff(a, 'days') + 1;
   }
 
-  getTotal(element) {
+  public getTotal(element) {
     return element.serviceInfos.filter(info => !info.isDeleted).reduce((total, info) => total + this.getDateDiff(info) * (info.snfDailyRate || info.dailyRate || 0) - info.snfLiability || info.liability || 0, 0);
   }
 
-  getStatusText(status) {
-    return PATIENT_STATUSES.find(s => s.id == status).text;
+  public getStatusText(status) {
+    return PATIENT_STATUSES.find(s => s.id === status).text;
+  }
+
+  public checkStatusCheckBox(event) {
+    if (event.checked) {
+     this.patientChecked.emit(event);
+     this.checkBoxValueChange.emit(event);
+    } else {
+      this.checkBoxValueChange.emit(event);
+    }
   }
 }

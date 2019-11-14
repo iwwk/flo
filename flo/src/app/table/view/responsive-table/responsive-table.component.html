@@ -1,15 +1,16 @@
 <div (window:resize)="updateWindowWidth()">
   <desktop *ngIf="!showMobile"
             [rowData]="rowData"
-            (openChat)="openChat($event)"
-            (uploadInfo)="uploadInfo($event)"
-            (edit)="edit($event)"
-            (rowSelection)="onRowSelection($event)"
-            (selectionChanged)="onSelectionChanged($event)"></desktop>
+            (openChat)="openChat.emit($event)"
+            (edit)="edit.emit($event)"
+            (uploadInfo)="uploadInfo.emit($event)"
+            (patientChecked)="patientChecked.emit($event)"
+            (checkBoxValueChange)="checkBoxPatientChange.emit($event)"></desktop>
   <mobile *ngIf="showMobile"
           [rowData]="rowData"
-          (openChat)="openChat($event)"
-          (edit)="edit($event)"
-          (selectedChange)="selectedChange($event)"
-          (uploadInfo)="uploadInfo($event)"></mobile>
+          (openChat)="openChat.emit($event)"
+          (edit)="edit.emit($event)"
+          (uploadInfo)="uploadInfo.emit($event)"
+          (checkBoxValueChange)="checkBoxPatientChange.emit($event)"
+          (patientChecked)="patientChecked.emit($event)"></mobile>
 </div>

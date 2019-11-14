@@ -1,9 +1,8 @@
 .status {
-  display: inline;
-  padding: 5px 10px;
-  background-color: #3f51b5;
-  border-radius: 7px;
+  line-height: 1.2;
 }
-.status__text {
-  color: #fff;
+.label-success {
+    color: #000000;
+    white-space: pre-wrap;
+    word-break: break-word;
 }

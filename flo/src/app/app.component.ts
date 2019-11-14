@@ -14,4 +14,26 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     this.rowData = this.patientDataService.patientData[0].items;
   }
+
+
+  public openChat(rowDate): void {
+    console.log('openChat', rowDate);
+  }
+
+  public edit(rowDate): void {
+    console.log('edit', rowDate);
+  }
+
+  public uploadInfo(uploadData): void {
+    console.log('uploadInfo', uploadData);
+  }
+
+  public checkBoxPatientChange(rowDate): void {
+    console.log('checkBoxPatientChange', rowDate);
+  }
+
+  public patientChecked(selectedItem): void {
+    console.log('patientChecked', selectedItem);
+  }
+
 }

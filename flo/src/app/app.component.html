@@ -1,3 +1,8 @@
 <div>
-  <responsive-table [rowData]="rowData"></responsive-table>
+  <responsive-table [rowData]="rowData"
+                    (openChat)="openChat($event)"
+                    (uploadInfo)="uploadInfo($event)"
+                    (edit)="edit($event)"
+                    (checkBoxPatientChange)="checkBoxPatientChange($event)"
+                    (patientChecked)="patientChecked($event)"></responsive-table>
 </div>

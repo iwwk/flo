@@ -12,7 +12,7 @@
   (gridReady)="onGridReady($event)"
   (gridSizeChanged)="updateTableSize()"
   (firstDataRendered)="onFirstDataRendered($event)"
-  (rowSelected)="rowSelection.emit($event);"
-  (selectionChanged)="selectionChanged.emit($event);"
+  (rowSelected)="patientChecked.emit($event);"
+  (selectionChanged)="checkBoxValueChange.emit($event);"
   (cellClicked)="$event['colDef']['headerName'] === 'chat' && openDetailsModal($event.data)">
 </ag-grid-angular>
