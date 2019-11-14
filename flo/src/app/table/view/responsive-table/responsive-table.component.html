@@ -5,8 +5,7 @@
             (uploadInfo)="uploadInfo($event)"
             (edit)="edit($event)"
             (rowSelection)="onRowSelection($event)"
-            (selectionChanged)="onSelectionChanged($event)"
-  ></desktop>
+            (selectionChanged)="onSelectionChanged($event)"></desktop>
   <mobile *ngIf="showMobile"
           [rowData]="rowData"
           (openChat)="openChat($event)"

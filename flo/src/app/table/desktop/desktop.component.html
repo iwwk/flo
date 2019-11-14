@@ -1,5 +1,4 @@
 <ag-grid-angular
-  style="width: 100%; height: 1000px"
   class="ag-theme-material _custom"
   [context]="{componentParent: this}"
   [rowData]="rowData"
@@ -9,6 +8,7 @@
   [suppressCellSelection]="true"
   [suppressRowClickSelection]="true"
   [rowSelection]="'multiple'"
+  [domLayout]="'autoHeight'"
   (gridReady)="onGridReady($event)"
   (gridSizeChanged)="updateTableSize()"
   (firstDataRendered)="onFirstDataRendered($event)"

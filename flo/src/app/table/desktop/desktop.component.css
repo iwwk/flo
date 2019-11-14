@@ -12,10 +12,6 @@
    padding: 0 5px !important;
    text-align: center;
 }
-.t-default__header .ag-header-cell,
-.t-default__header .ag-header-text {
-   width: 100%
-}
 .t-default__cell {
   padding: 0 5px !important;
 }

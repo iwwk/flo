@@ -15,7 +15,6 @@ export class DetailTablet implements OnInit {
 
   public agInit(tableData): void {
     this.tableData = tableData;
-    debugger;
     this.rows = tableData.data.serviceInfos;
   }
 
@@ -26,9 +25,9 @@ export class DetailTablet implements OnInit {
   }
 
   getDateDiff(date) {
-    var a = moment(date.startDate);
-    var b = moment(date.endDate);
-    return b.diff(a, 'days') + 1; 
+    const a = moment(date.startDate);
+    const b = moment(date.endDate);
+    return b.diff(a, 'days') + 1;
   }
 
   getTotal() {

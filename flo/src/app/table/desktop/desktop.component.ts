@@ -26,6 +26,7 @@ export class DesktopTable implements OnInit {
   public gridApi: GridApi;
   private rowHeight;
   private columnDefs;
+  private domLayout;
 
   constructor() {
     this.columnDefs = [
@@ -75,7 +76,8 @@ export class DesktopTable implements OnInit {
       {
         headerName: 'Hospice',
         colId: 'hospice',
-        field: 'snfHistory[0].snfName',
+        field: 'snfHistory',
+        valueGetter: params => params.data.snfHistory[0].snfName,
         minWidth: 70,
         maxWidth: 901,
         headerClass: 't-default__header',
@@ -98,7 +100,7 @@ export class DesktopTable implements OnInit {
         cellRendererFramework: ActionsBtnComponent,
         maxWidth: 90,
         suppressSizeToFit: true,
-        minWidth:80,
+        minWidth: 45,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center',
       },
