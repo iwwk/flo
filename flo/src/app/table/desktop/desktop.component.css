@@ -27,3 +27,10 @@
 .t-default__cell._underlined {
   text-decoration: underline;
 }
+.crossed {
+  text-decoration: line-through;
+}
+.bolder {
+  font-weight: bold;
+}
+

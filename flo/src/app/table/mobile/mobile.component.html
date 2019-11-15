@@ -1,61 +1,44 @@
-<div class="wrapper"
-     fxLayout="column"
-     fxLayoutGap="15px">
-  <mat-card class="patient-card"
-            fxLayoutGap="5px"
-            fxLayout="column"
-            *ngFor="let item of rowData">
-    <div class="animation-wrapper">
-    </div>
-    <mat-card class="patient-card__header"
-              fxLayout="column">
-      <mat-card-title fxLayout="row">
-        <div fxLayout="row" fxLayoutGap="10px">
-          <div fxLayout="row"
-               fxLayoutAlign="center center"
-               fxLayoutGap="10px">
-            <mat-checkbox color="primary"
-                          (change)="checkStatusCheckBox($event)"></mat-checkbox></div>
-          <span class="label"
-                  [ngClass]="tableData?.data?.status?.status == 4 ? 'label-success': 'label-info'">{{getStatusText(item?.status?.status || 1)}}</span>
+<div class="patients-container" fxLayout="column" fxLayoutGap="15px">
+  <div class="patient-card" fxLayout="column" fxLayoutGap="5px" *ngFor="let item of rowData">
+    <mat-card class="patient-card__header" fxLayout="column">
+      <mat-card-title>
+        <div fxLayout="row wrap" fxLayoutAlign="center center">
+          <div fxFlex="25" fxLayoutGap="5px">
+            <mat-checkbox color="primary" (change)="checkStatusCheckBox($event)"></mat-checkbox>
+            <span class="label" [ngClass]="tableData?.data?.status?.status == 4 ? 'label-success': 'label-info'">{{getStatusText(item?.status?.status || 1)}}</span>
+          </div>
+          <div fxFlex="75" fxLayoutAlign="end center">
+            <button mat-icon-button
+                    type="button"
+                    color="primary"
+                    (click)="item.show = !item.show">
+              <mat-icon *ngIf="item.show" class="actions-btn-icon">expand_less</mat-icon>
+              <mat-icon *ngIf="!item.show" class="actions-btn-icon">expand_more</mat-icon>
+            </button>
+            <button color="primary"
+                    (click)="openChat.emit(item)"
+                    mat-icon-button
+                    type="button"
+                    [title]="'Notes'">
+              <mat-icon class="actions-btn-icon">chat</mat-icon>
+            </button>
+            <button mat-icon-button
+                    color="primary"
+                    type="button"
+                    (click)="edit.emit(item)"
+                    title="Edit">
+              <mat-icon class="actions-btn-icon">mode_edit</mat-icon>
+            </button>
+          </div>
         </div>
-        <div class="btn-action-wrapper"
-             fxFlex="100%"
-             fxLayoutAlign="end center"
-             fxLayout="row"
-             fxLayoutGap="10px">
-          <button *ngIf="true" class="actions-btn"
-                  mat-icon-button
-                  type="button"
-                  color="primary"
-                  (click)="item.show = !item.show">
 
-            <mat-icon *ngIf="item.show" class="actions-btn-icon">expand_less</mat-icon>
-            <mat-icon *ngIf="!item.show" class="actions-btn-icon">expand_more</mat-icon>
-          </button>
-          <button *ngIf="true" class="actions-btn"
-                  color="primary"
-                  (click)="openChat.emit(item)"
-                  mat-icon-button
-                  type="button"
-                  [title]="'Chat'">
-            <mat-icon class="actions-btn-icon">chat</mat-icon>
-          </button>
-          <button *ngIf="true" class="actions-btn"
-                  mat-icon-button
-                  color="primary"
-                  type="button"
-                  (click)="edit.emit(item)"
-                  title="Edit">
-            <mat-icon class="actions-btn-icon">mode_edit</mat-icon>
-          </button></div>
       </mat-card-title>
       <mat-card-content>
         <dl fxFlex="100%">
           <dt>Patient</dt>
           <dd>{{item.lastName}} {{item.firstName}}</dd>
-          <!--<dt>Hospice</dt>
-          <dd></dd>-->
+          <dt>Hospice</dt>
+          <dd></dd>
           <dt>Total</dt>
           <dd class="_total">${{getTotal(item) | number:'1.2-2'}}</dd>
         </dl>
@@ -75,15 +58,10 @@
                           *ngIf="item.isPrivatePay || item.isMedPendingwarningType">
             <span>
               Med pending patient is not eligibl for payment. Please provide proof of caverage
-              <button class="message-button"
-                      mat-raised-button
-                      color="warn"
-                      (click)="uploadInfo.emit(serviceInfo)">
-                Upload
-              </button>
+              <button mat-raised-button color="warn" (click)="uploadInfo.emit(serviceInfo)">Upload</button>
             </span>
           </mat-card-title>
-          <dl fxFlex="100%">
+          <dl>
             <dt>Status</dt>
             <dd></dd>
 
@@ -122,7 +100,7 @@
         </mat-card>
       </div>
     </ng-container>
-  </mat-card>
+  </div>
 </div>
 
 

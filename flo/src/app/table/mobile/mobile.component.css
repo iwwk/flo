@@ -1,4 +1,4 @@
-.wrapper {
+/*.wrapper {
   width: 100%;
   padding: 5px 5px;
   overflow: hidden;
@@ -60,6 +60,19 @@
 
 .patient-card__body-details._warning-message {
   background-color: #ffb22b
+}*/
+
+.patients-container {
+  padding: 5px 5px;
+  overflow: hidden;
+  align-items: center;
+  max-width: 750px;
+  width: 100%;
+}
+
+.patient-card {
+  background-color: #f8f5f5;
+  width: 100%;
 }
 
 dt {
