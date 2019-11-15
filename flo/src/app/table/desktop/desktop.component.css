@@ -7,7 +7,6 @@
 .ag-theme-material .ag-icon-checkbox-checked {
   color: #3f51b5;
 }
-
 .t-default__header {
    padding: 0 5px !important;
    text-align: center;
@@ -26,6 +25,12 @@
 }
 .t-default__cell._underlined {
   text-decoration: underline;
+}
+.ag-row:nth-child(2n) {
+  background-color: #f5f5f5;
+}
+.ag-row:hover {
+  background-color: #efefef;
 }
 .crossed {
   text-decoration: line-through;

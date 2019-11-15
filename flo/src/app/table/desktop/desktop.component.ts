@@ -26,6 +26,7 @@ export class DesktopTable implements OnInit {
   public gridApi: GridApi;
   private rowHeight;
   private columnDefs;
+  public countRow: number;
 
   constructor() {
     this.columnDefs = [
@@ -121,6 +122,7 @@ export class DesktopTable implements OnInit {
   }
 
   public onFirstDataRendered(event: any): void {
+    this.countRow = event.lastRow;
     this.columnApi = event.columnApi;
     this.gridApi = event.api;
     this.gridApi.sizeColumnsToFit();

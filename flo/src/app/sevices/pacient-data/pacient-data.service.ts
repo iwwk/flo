@@ -31,7 +31,7 @@ export class PatientDataService {
             liability: 0.00,
             dailyRate: 241.54,
             isPrivatePay: false,
-            isMedPending: true,
+            isMedPending: false,
             serviceInfos: [
               {
                 startDate: '2019-10-01T00:00:00',
@@ -310,7 +310,7 @@ export class PatientDataService {
             liability: 0.00,
             dailyRate: 241.54,
             isPrivatePay: false,
-            isMedPending: true,
+            isMedPending: false,
             serviceInfos: [
               {
                 startDate: '2019-10-01T00:00:00',
@@ -589,7 +589,7 @@ export class PatientDataService {
             liability: 0.00,
             dailyRate: 241.54,
             isPrivatePay: false,
-            isMedPending: true,
+            isMedPending: false,
             serviceInfos: [
               {
                 startDate: '2019-10-01T00:00:00',
@@ -868,7 +868,7 @@ export class PatientDataService {
             liability: 0.00,
             dailyRate: 241.54,
             isPrivatePay: false,
-            isMedPending: true,
+            isMedPending: false,
             serviceInfos: [
               {
                 startDate: '2019-10-01T00:00:00',
@@ -1147,7 +1147,7 @@ export class PatientDataService {
             liability: 0.00,
             dailyRate: 241.54,
             isPrivatePay: false,
-            isMedPending: true,
+            isMedPending: false,
             serviceInfos: [
               {
                 startDate: '2019-10-01T00:00:00',

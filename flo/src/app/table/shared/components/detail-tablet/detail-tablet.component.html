@@ -1,5 +1,5 @@
-<table class="detail-tablet">
-  <thead class="detail-tablet__row">
+<table class="detail-tablet" >
+  <thead class="detail-tablet__row" *ngIf="parentLineNumber === 0 || everyone(3)">
     <th>Status</th>
     <th>Service Date</th>
     <th>DOS</th>
