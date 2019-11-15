@@ -1,13 +1,13 @@
-<div class="patients-container" fxLayout="column" fxLayoutGap="15px">
+<div class="patients-container" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center center">
   <div class="patient-card" fxLayout="column" fxLayoutGap="5px" *ngFor="let item of rowData">
     <mat-card class="patient-card__header" fxLayout="column">
       <mat-card-title>
         <div fxLayout="row wrap" fxLayoutAlign="center center">
-          <div fxFlex="25" fxLayoutGap="5px">
+          <div fxFlex="60" fxLayoutGap="5px">
             <mat-checkbox color="primary" (change)="checkStatusCheckBox($event)"></mat-checkbox>
             <span class="label" [ngClass]="tableData?.data?.status?.status == 4 ? 'label-success': 'label-info'">{{getStatusText(item?.status?.status || 1)}}</span>
           </div>
-          <div fxFlex="75" fxLayoutAlign="end center">
+          <div fxFlex="40" fxLayoutAlign="end center">
             <button mat-icon-button
                     type="button"
                     color="primary"
