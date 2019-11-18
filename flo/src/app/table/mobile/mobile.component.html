@@ -1,22 +1,22 @@
-<mat-accordion class="mobile-card">
+<mat-accordion [multi]="true" class="mobile-card">
   <mat-expansion-panel *ngFor="let item of rowData" #panel1 [hideToggle]="true">
-    <mat-expansion-panel-header  fxLayout="row" [collapsedHeight]="'150px'"
+    <mat-expansion-panel-header fxLayout="row" [collapsedHeight]="'125px'"
                                 [expandedHeight]="'100%'">
       <mat-panel-title>
         <div fxLayoutAlign="space-between center" fxFlex="100">
           <div>
-            <mat-checkbox class="mobile-card-checkbox" color="primary"  style="margin-right: 10px; pointer-events: auto" (click)="$event.stopPropagation();" (change)="checkStatusCheckBox($event,item)"></mat-checkbox>
+            <mat-checkbox class="mobile-card-checkbox" color="primary" style="margin-right: 10px; pointer-events: auto" (click)="$event.stopPropagation();" (change)="checkStatusCheckBox($event,item)"></mat-checkbox>
             <span class="label" [ngClass]="tableData?.data?.status?.status == 4 ? 'label-success': 'label-info'">{{getStatusText(item?.status?.status || 1)}}</span>
           </div>
-          <div style="margin-right: -10px; display: flex">
+          <div>
             <button mat-icon-button
                     type="button"
                     color="primary"
                     class="mobile-card-toggle-btn"
                     (click)="$event.stopPropagation(); panel1.toggle()">
-                            <mat-icon *ngIf="item.show" class="actions-btn-icon">expand_less</mat-icon>
-                            <mat-icon *ngIf="!item.show" class="actions-btn-icon">expand_more</mat-icon>
-                          </button>
+              <mat-icon *ngIf="item.show" class="actions-btn-icon">expand_less</mat-icon>
+              <mat-icon *ngIf="!item.show" class="actions-btn-icon">expand_more</mat-icon>
+            </button>
             <button color="primary"
                     style="pointer-events: auto"
                     (click)="$event.stopPropagation(); openChat.emit(item)"
@@ -47,21 +47,22 @@
         </dl>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <ng-container>
-      <div class="patient-card__body"
-           fxLayout="column"
-           *ngFor="let info of item.serviceInfos">
-        <mat-card class="patient-card__body-details" fxLayoutGap="10px"
-                  [class._warning-message]="item.isPrivatePay || item.isMedPending"
-                  fxLayout="column">
-          <mat-card-title class="patient-card__body-details-title"
-                          fxLayout="column"
-                          *ngIf="item.isPrivatePay || item.isMedPending">
-            <span class="mobile-card__warning-message">
-              Med pending patient is not eligibl for payment. Please provide proof of caverage
-              <button class=mobile-card__warning-message-btn mat-raised-button color="warn" (click)="uploadInfo.emit(item)">Upload</button>
-            </span>
-          </mat-card-title>
+
+    <div class="patient-card__body"
+         fxLayout="column"
+         *ngFor="let info of item.serviceInfos">
+      <mat-card class="patient-card__body-details"
+                [class._warning-message]="item.isPrivatePay || item.isMedPending"
+                fxLayout="column">
+        <mat-card-title class="patient-card__body-details-title"
+                        fxLayout="column"
+                        *ngIf="item.isPrivatePay || item.isMedPending">
+          <span class="mobile-card__warning-message">
+            Med pending patient is not eligibl for payment. Please provide proof of caverage
+            <button class=mobile-card__warning-message-btn mat-raised-button color="warn" (click)="uploadInfo.emit(item)">Upload</button>
+          </span>
+        </mat-card-title>
+        <mat-card-content>
           <dl>
             <dt>Service Dates</dt>
             <dd>
@@ -92,8 +93,9 @@
             <dt>Net Payment</dt>
             <dd>${{getDateDiff(info)*(info.snfDailyRate||info.dailyRate||0) - info.snfLiability||info.liability||0 | number:'1.2-2'}}</dd>
           </dl>
-        </mat-card>
-      </div>
-    </ng-container>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
   </mat-expansion-panel>
 </mat-accordion>

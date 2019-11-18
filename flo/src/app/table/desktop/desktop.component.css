@@ -7,6 +7,10 @@
 .ag-theme-material .ag-icon-checkbox-checked {
   color: #3f51b5;
 }
+.ag-theme-material .ag-header-cell-text {
+  font-family: "Poppins", sans-serif;
+}
+  
 .t-default__header {
    padding: 0 5px !important;
    text-align: center;

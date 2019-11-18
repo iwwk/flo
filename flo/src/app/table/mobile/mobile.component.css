@@ -14,6 +14,9 @@
 .patient-card__body-details._warning-message  {
   background-color: #ffb22b;
 }
+dl {
+  margin:0;
+}
 dt {
   float: left;
   padding-right: 5px;
@@ -28,9 +31,6 @@ dd {
   text-align: end;
   margin-left: 0;
 }
-dd:not(:last-child) {
-  margin-bottom: 10px;
-}
 
 mat-checkbox.mobile-card-checkbox .mat-ripple-element {
   background-color: transparent !important;
@@ -42,17 +42,21 @@ mat-checkbox.mobile-card-checkbox .mat-ripple-element {
   background-color:#f8f8f8;
 }
 
+.mobile-card .mat-expansion-panel-body {
+  padding: 0;
+}
+
 .mobile-card .mat-expansion-panel-header {
-  padding: 15px 0 0 10px;
+  padding-left: 10px;
 }
 
 .mobile-card .mat-expansion-panel-header .mat-content {
   flex-direction: column;
 }
-
-.mobile-card .patient-card__body:not(:last-child) {
-  margin-bottom: 10px;
+.patient-card__body-details-title mat-card-title {
+  padding: 0 24px;
 }
+
 .mobile-card__warning-message {
   font-size: 16px;
 }

@@ -18,7 +18,7 @@
             {{row.startDate | date:'MM/dd/yy'}}-{{row.endDate | date:'MM/dd/yy'}}
           </div>
         </td>
-        <td class="detail-tablet__cell">{{getDateDiff(row)}}</td>
+        <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">{{getDateDiff(row)}}</td>
         <td class="detail-tablet__cell">
           <div>
             <span *ngIf="row.snfDailyRate != null && row.snfDailyRate != row.dailyRate" class="bolder p-r-10">${{row.snfDailyRate}}</span>
@@ -32,7 +32,7 @@
             <span *ngIf="row.liability != null" [ngClass]="{'crossed': row.snfLiability != null && row.snfLiability!=row.liability }">${{row.liability}}</span>
           </div>
         </td>
-        <td class="detail-tablet__cell">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
+        <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
         <td *ngIf="isFirst" class="detail-tablet__cell _total" [rowSpan]="rows.length">${{getTotal() | number:'1.2-2'}}</td>
       </tr>
       <tr class="detail-tablet__message" *ngIf="tableData.data.isPrivatePay || tableData.data.isMedPending">
@@ -71,7 +71,7 @@
                     <span *ngIf="row.liability != null" [ngClass]="{'crossed': row.snfLiability != null && row.snfLiability!=row.liability }">${{row.liability}}</span>
                   </div>
                 </td>
-                <td class="detail-tablet__cell">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
+                <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
               </tr>
             </table>
           </div>
