@@ -1,6 +1,6 @@
 <mat-accordion [multi]="true" class="mobile-card">
   <mat-expansion-panel *ngFor="let item of rowData" #panel1 [hideToggle]="true">
-    <mat-expansion-panel-header fxLayout="row" [collapsedHeight]="'125px'"
+    <mat-expansion-panel-header [collapsedHeight]="'100%'"
                                 [expandedHeight]="'100%'">
       <mat-panel-title>
         <div fxLayoutAlign="space-between center" fxFlex="100">
@@ -76,8 +76,8 @@
             <dt>Daily Rate</dt>
             <dd>
               <div>
-                <span *ngIf="info.snfDailyRate != null && info.snfDailyRate != info.dailyRate" class="bolder p-r-10">${{info.snfDailyRate}}</span>
-                <span *ngIf="info.dailyRate != null" [ngClass]="{'crossed': info.snfDailyRate != null && info.snfDailyRate != info.dailyRate}">${{info.dailyRate}}</span>
+                <span *ngIf="info.snfDailyRate != null && info.snfDailyRate != info.dailyRate" class="bolder">${{info.snfDailyRate}}</span>
+                <span *ngIf="info.dailyRate != null" class="p-l-10" [ngClass]="{'crossed': info.snfDailyRate != null && info.snfDailyRate != info.dailyRate}">${{info.dailyRate}}</span>
               </div>
             </dd>
             <dt>Gross Payment</dt>
@@ -86,8 +86,8 @@
             <dt>Liability</dt>
             <dd>
               <div>
-                <span *ngIf="info.snfLiability != null && info.snfLiability!=info.liability " class="bolder p-r-10">${{info.snfLiability}}</span>
-                <span *ngIf="info.liability != null" [ngClass]="{'crossed': info.snfLiability != null && info.snfLiability!=info.liability }">${{info.liability}}</span>
+                <span *ngIf="info.snfLiability != null && info.snfLiability!=info.liability " class="bolder">${{info.snfLiability}}</span>
+                <span *ngIf="info.liability != null" class="p-l-10" [ngClass]="{'crossed': info.snfLiability != null && info.snfLiability!=info.liability }">${{info.liability}}</span>
               </div>
             </dd>
             <dt>Net Payment</dt>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HospicePatient } from '../../../models/hospice-patient.model';
 
 @Component({
+  styleUrls: ['responsive-table.component.css'],
   selector: 'responsive-table',
   templateUrl: './responsive-table.component.html',
 })

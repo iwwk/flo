@@ -41,7 +41,7 @@
           <div style="padding: 0">
             <table class="message">
               <tr class="detail-tablet__row">
-                <td colspan="6" class="message-text">Med pending patient is not eligibl for payment. Please provide
+                <td colspan="7" class="message-text">Med pending patient is not eligibl for payment. Please provide
                   proof of caverage
                 </td>
                 <td class="message-cell _btn">
@@ -72,6 +72,7 @@
                   </div>
                 </td>
                 <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
+                <td *ngIf="isFirst" class="detail-tablet__cell _total" [rowSpan]="rows.length">${{getTotal() | number:'1.2-2'}}</td>
               </tr>
             </table>
           </div>

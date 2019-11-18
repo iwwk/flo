@@ -53,14 +53,20 @@ mat-checkbox.mobile-card-checkbox .mat-ripple-element {
 .mobile-card .mat-expansion-panel-header .mat-content {
   flex-direction: column;
 }
-.patient-card__body-details-title mat-card-title {
-  padding: 0 24px;
-}
 
 .mobile-card__warning-message {
   font-size: 16px;
+  padding: 5px 0px 5px 24px;
 }
 .mobile-card__warning-message-btn.mat-raised-button {
   line-height: 1.8;
   font-size: 12px;
+}
+
+.crossed {
+  text-decoration: line-through;
+}
+
+.bolder {
+  font-weight: bold;
 }
