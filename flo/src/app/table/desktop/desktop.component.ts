@@ -34,8 +34,7 @@ export class DesktopTable implements OnInit {
         headerName: '',
         colId: 'checkbox',
         field: 'checkbox',
-        maxWidth: 40,
-        minWidth: 40,
+        width: 40,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
         checkboxSelection: true,
@@ -47,7 +46,7 @@ export class DesktopTable implements OnInit {
         headerName: '',
         colId: 'chat',
         cellRendererFramework: ChatActionsComponent,
-        maxWidth: 55,
+        width: 55,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center',
         suppressSizeToFit: true,
@@ -67,8 +66,6 @@ export class DesktopTable implements OnInit {
         colId: 'patientName',
         field: 'model',
         cellRendererFramework: PatientNameComponent,
-        maxWidth: 150,
-        minWidth: 70,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center _wrap _underlined',
       },
@@ -77,8 +74,6 @@ export class DesktopTable implements OnInit {
         colId: 'hospice',
         field: 'snfHistory',
         valueGetter: params => params.data.snfHistory[0].snfName,
-        minWidth: 70,
-        maxWidth: 901,
         autoHeight: true,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center _wrap',
@@ -91,16 +86,14 @@ export class DesktopTable implements OnInit {
         cellClass: 't-default__cell',
         cellRendererFramework: DetailTablet,
         autoHeight: true,
-        maxWidth: 1000,
       },
       {
         headerName: '',
         colId: 'actions',
         field: 'price',
         cellRendererFramework: ActionsBtnComponent,
-        maxWidth: 90,
         suppressSizeToFit: true,
-        minWidth: 45,
+        width: 45,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center',
       },
@@ -116,17 +109,17 @@ export class DesktopTable implements OnInit {
   }
 
   public updateTableSize(): void {
-    this.columnApi.autoSizeColumns(['checkbox', 'chat', 'status', 'serviceInfo', 'actions']);
+    this.columnApi.autoSizeColumns(['patientName', 'hospice', 'serviceInfo']);
     this.gridApi.sizeColumnsToFit();
     this.gridApi.resetRowHeights();
   }
 
   public onFirstDataRendered(event: any): void {
-    this.countRow = event.lastRow;
-    this.columnApi = event.columnApi;
-    this.gridApi = event.api;
-    this.gridApi.sizeColumnsToFit();
-    this.gridApi.resetRowHeights();
+    //this.countRow = event.lastRow;
+    //this.columnApi = event.columnApi;
+    //this.gridApi = event.api;
+    //this.gridApi.sizeColumnsToFit();
+    //this.gridApi.resetRowHeights();
   }
 
   public openDetailsModal(dataRow: any): void {

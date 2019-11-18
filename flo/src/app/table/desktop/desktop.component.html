@@ -11,7 +11,6 @@
   [domLayout]="'autoHeight'"
   (gridReady)="onGridReady($event)"
   (gridSizeChanged)="updateTableSize()"
-  (firstDataRendered)="onFirstDataRendered($event)"
   (rowSelected)="patientChecked.emit($event);"
   (selectionChanged)="checkBoxValueChange.emit($event);"
   (cellClicked)="$event['colDef']['colId'] === 'chat' && openDetailsModal($event.data)">
