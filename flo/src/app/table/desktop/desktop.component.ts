@@ -130,7 +130,6 @@ export class DesktopTable implements OnInit {
   }
 
   public openDetailsModal(dataRow: any): void {
-    console.log(dataRow);
     this.openChat.emit(dataRow);
   }
 
