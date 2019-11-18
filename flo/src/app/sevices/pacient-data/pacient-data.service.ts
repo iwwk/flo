@@ -30,7 +30,7 @@ export class PatientDataService {
             snfDaysInHospice: 12,
             liability: 0.00,
             dailyRate: 241.54,
-            isPrivatePay: false,
+            isPrivatePay: true,
             isMedPending: false,
             serviceInfos: [
               {

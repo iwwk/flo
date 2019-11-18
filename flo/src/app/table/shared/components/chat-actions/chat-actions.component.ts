@@ -10,7 +10,4 @@ export class ChatActionsComponent {
   public agInit(tableData): void {
     this.tableData = tableData;
   }
-
-  public openLeadChat(): void {
-  }
 }

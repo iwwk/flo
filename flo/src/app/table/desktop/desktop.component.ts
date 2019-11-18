@@ -47,7 +47,7 @@ export class DesktopTable implements OnInit {
         headerName: '',
         colId: 'chat',
         cellRendererFramework: ChatActionsComponent,
-        maxWidth: 40,
+        maxWidth: 55,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center',
         suppressSizeToFit: true,
@@ -58,7 +58,7 @@ export class DesktopTable implements OnInit {
         field: 'status',
         cellRendererFramework: StatusComponent,
         maxWidth: 105,
-        minWidth: 80,
+        minWidth: 90,
         headerClass: 't-default__header',
         cellClass: 't-default__cell _align-center',
       },
@@ -130,6 +130,7 @@ export class DesktopTable implements OnInit {
   }
 
   public openDetailsModal(dataRow: any): void {
+    console.log(dataRow);
     this.openChat.emit(dataRow);
   }
 

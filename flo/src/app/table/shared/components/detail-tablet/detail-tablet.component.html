@@ -1,5 +1,5 @@
 <table class="detail-tablet" >
-  <thead class="detail-tablet__row" *ngIf="parentLineNumber === 0 || everyone(3)">
+  <thead class="detail-tablet__row" *ngIf="parentLineNumber === 0">
     <th>Status</th>
     <th>Service Date</th>
     <th>DOS</th>
@@ -47,7 +47,7 @@
                 <td class="message-cell _btn">
                   <button class="message-button"
                           mat-raised-button color="warn"
-                          (click)="uploadInfo($event)">Upload</button>
+                          (click)="uploadInfo(tableData.data)">Upload</button>
                 </td>
               </tr>
               <tr class="detail-tablet__row">

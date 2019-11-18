@@ -14,5 +14,5 @@
   (firstDataRendered)="onFirstDataRendered($event)"
   (rowSelected)="patientChecked.emit($event);"
   (selectionChanged)="checkBoxValueChange.emit($event);"
-  (cellClicked)="$event['colDef']['headerName'] === 'chat' && openDetailsModal($event.data)">
+  (cellClicked)="$event['colDef']['colId'] === 'chat' && openDetailsModal($event.data)">
 </ag-grid-angular>

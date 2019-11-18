@@ -25,7 +25,7 @@ export interface HospicePatient {
   snfHistory: SNFHistory[],
   hospiceDates: any[],
   liability: number,
-  dailyRate:number,
+  dailyRate: number,
   daysInHospice: number,
   snfDaysInHospice: number,
   latestLiability: number,
