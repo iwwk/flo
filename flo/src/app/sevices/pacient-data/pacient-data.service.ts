@@ -30,7 +30,7 @@ export class PatientDataService {
             snfDaysInHospice: 12,
             liability: 0.00,
             dailyRate: 241.54,
-            isPrivatePay: true,
+            isPrivatePay: false,
             isMedPending: false,
             serviceInfos: [
               {
@@ -38,7 +38,7 @@ export class PatientDataService {
                 endDate: '2019-10-31T00:00:00',
                 liability: 0.00,
                 dailyRate: 241.54,
-                snfLiability: null,
+                snfLiability: 130,
                 snfDailyRate: null,
                 isDeleted: true,
                 isAdded: false
@@ -48,7 +48,7 @@ export class PatientDataService {
                 endDate: '2019-10-03T00:00:00',
                 liability: null,
                 dailyRate: null,
-                snfLiability: 0.00,
+                snfLiability: 23.01,
                 snfDailyRate: 599.00,
                 isDeleted: false,
                 isAdded: true
@@ -215,7 +215,7 @@ export class PatientDataService {
             snfDaysInHospice: 31,
             liability: 337.80,
             dailyRate: 0.0,
-            isPrivatePay: false,
+            isPrivatePay: true,
             isMedPending: false,
             serviceInfos: [
               {

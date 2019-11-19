@@ -18,18 +18,19 @@
             {{row.startDate | date:'MM/dd/yy'}}-{{row.endDate | date:'MM/dd/yy'}}
           </div>
         </td>
-        <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">{{getDateDiff(row)}}</td>
+        <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">{{getDateDiff(row)}} day(s)</td>
         <td class="detail-tablet__cell">
           <div>
             <span *ngIf="row.snfDailyRate != null && row.snfDailyRate != row.dailyRate" class="bolder p-r-10">${{row.snfDailyRate}}</span>
             <span *ngIf="row.dailyRate != null" [ngClass]="{'crossed': row.snfDailyRate != null && row.snfDailyRate != row.dailyRate}">${{row.dailyRate}}</span>
+            <span> per day</span>
           </div>
         </td>
         <td class="detail-tablet__cell">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) | number:'1.2-2'}}</td>
         <td class="detail-tablet__cell">
           <div>
-            <span *ngIf="row.snfLiability != null &&row.snfLiability!=row.liability " class="bolder p-r-10">${{row.snfLiability}}</span>
-            <span *ngIf="row.liability != null" [ngClass]="{'crossed': row.snfLiability != null && row.snfLiability!=row.liability }">${{row.liability}}</span>
+            <span *ngIf="row.snfLiability != null &&row.snfLiability!=row.liability " class="bolder p-r-10">(${{row.snfLiability}})</span>
+            <span *ngIf="row.liability != null" [ngClass]="{'crossed': row.snfLiability != null && row.snfLiability!=row.liability }">(${{row.liability}})</span>
           </div>
         </td>
         <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
@@ -41,7 +42,7 @@
           <div style="padding: 0">
             <table class="message">
               <tr class="detail-tablet__row">
-                <td colspan="7" class="message-text">Med pending patient is not eligibl for payment. Please provide
+                <td p-l-10 colspan="7" class="message-text">Med pending patient is not eligibl for payment. Please provide
                   proof of caverage
                 </td>
                 <td class="message-cell _btn">
@@ -57,18 +58,19 @@
                     {{row.startDate | date:'MM/dd/yy'}}-{{row.endDate | date:'MM/dd/yy'}}
                   </div>
                 </td>
-                <td class="detail-tablet__cell">{{getDateDiff(row)}}</td>
+                <td class="detail-tablet__cell">{{getDateDiff(row)}} day(s)</td>
                 <td class="detail-tablet__cell">
                   <div>
                     <span *ngIf="row.snfDailyRate != null && row.snfDailyRate != row.dailyRate" class="bolder p-r-10">${{row.snfDailyRate}}</span>
                     <span *ngIf="row.dailyRate != null" [ngClass]="{'crossed': row.snfDailyRate != null && row.snfDailyRate != row.dailyRate}">${{row.dailyRate}}</span>
+                    <span>per day</span>
                   </div>
                 </td>
                 <td class="detail-tablet__cell">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) | number:'1.2-2'}}</td>
                 <td class="detail-tablet__cell">
                   <div>
-                    <span *ngIf="row.snfLiability != null &&row.snfLiability!=row.liability " class="bolder p-r-10">${{row.snfLiability}}</span>
-                    <span *ngIf="row.liability != null" [ngClass]="{'crossed': row.snfLiability != null && row.snfLiability!=row.liability }">${{row.liability}}</span>
+                    <span *ngIf="row.snfLiability != null &&row.snfLiability!=row.liability " class="bolder p-r-10">(${{row.snfLiability}})</span>
+                    <span *ngIf="row.liability != null" [ngClass]="{'crossed': row.snfLiability != null && row.snfLiability!=row.liability }">(${{row.liability}})</span>
                   </div>
                 </td>
                 <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
