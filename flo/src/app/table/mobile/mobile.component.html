@@ -71,13 +71,13 @@
               </div>
             </dd>
             <dt>DOS</dt>
-            <dd>{{getDateDiff(info)}}</dd>
-
+            <dd>{{getDateDiff(info)}}day(s)</dd>
             <dt>Daily Rate</dt>
             <dd>
               <div>
                 <span *ngIf="info.snfDailyRate != null && info.snfDailyRate != info.dailyRate" class="bolder">${{info.snfDailyRate}}</span>
                 <span *ngIf="info.dailyRate != null" class="p-l-10" [ngClass]="{'crossed': info.snfDailyRate != null && info.snfDailyRate != info.dailyRate}">${{info.dailyRate}}</span>
+                <span>pre day</span>
               </div>
             </dd>
             <dt>Gross Payment</dt>
@@ -86,8 +86,8 @@
             <dt>Liability</dt>
             <dd>
               <div>
-                <span *ngIf="info.snfLiability != null && info.snfLiability!=info.liability " class="bolder">${{info.snfLiability}}</span>
-                <span *ngIf="info.liability != null" class="p-l-10" [ngClass]="{'crossed': info.snfLiability != null && info.snfLiability!=info.liability }">${{info.liability}}</span>
+                <span *ngIf="info.snfLiability != null && info.snfLiability!=info.liability " class="bolder">(${{info.snfLiability}})</span>
+                <span *ngIf="info.liability != null" class="p-l-10" [ngClass]="{'crossed': info.snfLiability != null && info.snfLiability!=info.liability }">(${{info.liability}})</span>
               </div>
             </dd>
             <dt>Net Payment</dt>

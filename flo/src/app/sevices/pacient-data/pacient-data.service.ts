@@ -30,19 +30,9 @@ export class PatientDataService {
             snfDaysInHospice: 12,
             liability: 0.00,
             dailyRate: 241.54,
-            isPrivatePay: false,
+            isPrivatePay: true,
             isMedPending: false,
             serviceInfos: [
-              {
-                startDate: '2019-10-01T00:00:00',
-                endDate: '2019-10-31T00:00:00',
-                liability: 0.00,
-                dailyRate: 241.54,
-                snfLiability: 130,
-                snfDailyRate: null,
-                isDeleted: true,
-                isAdded: false
-              },
               {
                 startDate: '2019-10-01T00:00:00',
                 endDate: '2019-10-03T00:00:00',
@@ -51,38 +41,10 @@ export class PatientDataService {
                 snfLiability: 23.01,
                 snfDailyRate: 599.00,
                 isDeleted: false,
-                isAdded: true
+                isAdded: true,
+                isPrivatePay: true,
+                isMedPending: false,
               },
-              {
-                startDate: '2019-10-15T00:00:00',
-                endDate: '2019-10-19T00:00:00',
-                liability: null,
-                dailyRate: null,
-                snfLiability: 1.00,
-                snfDailyRate: 12.00,
-                isDeleted: false,
-                isAdded: true
-              },
-              {
-                startDate: '2019-10-20T00:00:00',
-                endDate: '2019-10-21T00:00:00',
-                liability: null,
-                dailyRate: null,
-                snfLiability: 1.00,
-                snfDailyRate: 1.00,
-                isDeleted: false,
-                isAdded: true
-              },
-              {
-                startDate: '2019-10-22T00:00:00',
-                endDate: '2019-10-23T00:00:00',
-                liability: null,
-                dailyRate: null,
-                snfLiability: 1.00,
-                snfDailyRate: 1.00,
-                isDeleted: false,
-                isAdded: true
-              }
             ],
             status: {
               patientId: 0,

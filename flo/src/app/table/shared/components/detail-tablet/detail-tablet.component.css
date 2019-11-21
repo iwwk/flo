@@ -27,16 +27,14 @@
   white-space: pre-wrap;
   word-break: break-word;
   line-height: 1.2;
-  width: 60px;
   word-wrap: break-word;
-}
-.detail-tablet .message {
-  padding: 0;
 }
 .message {
   table-layout: fixed;
   width: 100%;
   box-sizing: unset;
+  overflow: hidden;
+  border-radius: 10px;
  }
 .detail-tablet__cell._total {
   font-size: 16px;
@@ -44,30 +42,25 @@
   text-align: center;
   border-color: transparent !important;
 }
-.detail-tablet__cell .message {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
-}
-.message th,
 .message td {
   line-height: 1.4;
-  background: #ffb22b;
-  white-space: pre-wrap;
-  word-break: break-word;
-  word-wrap: break-word;
+  background-color: #ffb22b;
+
 }
 .message-text {
   font-weight: 700;
   text-align: center;
   line-height: 2.2;
+  white-space: pre-wrap;
+  word-break: break-word;
+  word-wrap: break-word;
 }
 .message-cell._btn {
   padding: 5px 0;
+  min-width: 100px !important;
 }
 .message-button {
   display: block;
   line-height: 1.7;
+  margin: auto;
 }
-

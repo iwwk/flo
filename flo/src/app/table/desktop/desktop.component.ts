@@ -26,7 +26,6 @@ export class DesktopTable implements OnInit {
   public gridApi: GridApi;
   private rowHeight;
   private columnDefs;
-  public countRow: number;
 
   constructor() {
     this.columnDefs = [
