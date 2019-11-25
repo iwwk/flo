@@ -71,13 +71,14 @@
               </div>
             </dd>
             <dt>DOS</dt>
-            <dd>{{getDateDiff(info)}}day(s)</dd>
+            <dd>{{getDateDiff(info)}} day(s)</dd>
+
             <dt>Daily Rate</dt>
             <dd>
               <div>
                 <span *ngIf="info.snfDailyRate != null && info.snfDailyRate != info.dailyRate" class="bolder">${{info.snfDailyRate}}</span>
                 <span *ngIf="info.dailyRate != null" class="p-l-10" [ngClass]="{'crossed': info.snfDailyRate != null && info.snfDailyRate != info.dailyRate}">${{info.dailyRate}}</span>
-                <span>pre day</span>
+                <span> per day</span>
               </div>
             </dd>
             <dt>Gross Payment</dt>

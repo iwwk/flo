@@ -42,6 +42,10 @@ mat-checkbox.mobile-card-checkbox .mat-ripple-element {
   background-color:#f8f8f8;
 }
 
+.mobile-card .mat-card {
+  margin: 5px;
+}
+
 .mobile-card .mat-expansion-panel-body {
   padding: 0;
 }

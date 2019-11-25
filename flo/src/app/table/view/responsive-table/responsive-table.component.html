@@ -1,6 +1,7 @@
 <div (window:resize)="updateWindowWidth()">
   <desktop *ngIf="!showMobile"
             [rowData]="rowData"
+            [matTable]="matTable"
             (openChat)="openChat.emit($event)"
             (edit)="edit.emit($event)"
             (uploadInfo)="uploadInfo.emit($event)"

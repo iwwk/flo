@@ -1,4 +1,4 @@
-<table class="detail-tablet">
+<table class="detail-tablet" >
   <thead class="detail-tablet__row" *ngIf="parentLineNumber === 0">
     <th>Status</th>
     <th>Service Date</th>
@@ -10,74 +10,76 @@
     <th class="_align-center">Total</th>
   </thead>
   <tbody>
-      <tr *ngFor="let row of rows; let i = index; let isFirst = first">
-        <td colspan="7" *ngIf="!(row.isPrivatePay || row.isMedPending)">
-          <table style="border-collapse: collapse" class="detail-tablet">
-            <tr>
-              <td class="detail-tablet__cell">{{row.status}}</td>
-              <td class="detail-tablet__cell">
-                <div [ngClass]="{'crossed': row.isDeleted, 'bolder': row.isAdded}">
-                  {{row.startDate | date:'MM/dd/yy'}}-{{row.endDate | date:'MM/dd/yy'}}
-                </div>
-              </td>
-              <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">{{getDateDiff(row)}} day(s)</td>
-              <td class="detail-tablet__cell">
-                <div>
-                  <span *ngIf="row.snfDailyRate != null && row.snfDailyRate != row.dailyRate" class="bolder p-r-10">${{row.snfDailyRate}}</span>
-                  <span *ngIf="row.dailyRate != null" [ngClass]="{'crossed': row.snfDailyRate != null && row.snfDailyRate != row.dailyRate}">${{row.dailyRate}}</span>
-                  <span> per day</span>
-                </div>
-              </td>
-              <td class="detail-tablet__cell">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) | number:'1.2-2'}}</td>
-              <td class="detail-tablet__cell">
-                <div>
-                  <span *ngIf="row.snfLiability != null &&row.snfLiability!=row.liability " class="bolder p-r-10">(${{row.snfLiability}})</span>
-                  <span *ngIf="row.liability != null" [ngClass]="{'crossed': row.snfLiability != null && row.snfLiability!=row.liability }">(${{row.liability}})</span>
-                </div>
-              </td>
-              <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
-            </tr>
-          </table>
+    <ng-container *ngFor="let row of rows; let i = index; let isFirst = first">
+      <tr class="detail-tablet__row" *ngIf="!(tableData.data.isPrivatePay || tableData.data.isMedPending)">
+        <td class="detail-tablet__cell">{{row.status}}</td>
+        <td class="detail-tablet__cell">
+          <div [ngClass]="{'crossed': row.isDeleted, 'bolder': row.isAdded}">
+            {{row.startDate | date:'MM/dd/yy'}}-{{row.endDate | date:'MM/dd/yy'}}
+          </div>
         </td>
-        <td colspan="7" *ngIf="(row.isPrivatePay || row.isMedPending)">
-          <table class="message detail-tablet" style="border-collapse: collapse">
-            <tr class="detail-tablet__row">
-              <td colspan="5" class="message-text">Med pending patient is not eligibl for payment. Please provide
-                proof of caverage
-              </td>
-              <td colspan="2" class="message-cell _btn">
-                <button class="message-button"
-                        mat-raised-button color="warn"
-                        (click)="uploadInfo(tableData.data)">Upload</button>
-              </td>
-            </tr>
-            <tr class="detail-tablet__row">
-              <td class="detail-tablet__cell"><span style="padding-left: 7px">{{row.status}}</span></td>
-              <td class="detail-tablet__cell">
-                <div [ngClass]="{'crossed': row.isDeleted, 'bolder': row.isAdded}">
-                  {{row.startDate | date:'MM/dd/yy'}}-{{row.endDate | date:'MM/dd/yy'}}
-                </div>
-              </td>
-              <td class="detail-tablet__cell">{{getDateDiff(row)}} day(s)</td>
-              <td class="detail-tablet__cell">
-                <div>
-                  <span *ngIf="row.snfDailyRate != null && row.snfDailyRate != row.dailyRate" class="bolder p-r-10">${{row.snfDailyRate}}</span>
-                  <span *ngIf="row.dailyRate != null" [ngClass]="{'crossed': row.snfDailyRate != null && row.snfDailyRate != row.dailyRate}">${{row.dailyRate}}</span>
-                  <span>per day</span>
-                </div>
-              </td>
-              <td class="detail-tablet__cell">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) | number:'1.2-2'}}</td>
-              <td class="detail-tablet__cell">
-                <div>
-                  <span *ngIf="row.snfLiability != null &&row.snfLiability!=row.liability " class="bolder p-r-10">(${{row.snfLiability}})</span>
-                  <span *ngIf="row.liability != null" [ngClass]="{'crossed': row.snfLiability != null && row.snfLiability!=row.liability }">(${{row.liability}})</span>
-                </div>
-              </td>
-              <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
-            </tr>
-          </table>
+        <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">{{getDateDiff(row)}} day(s)</td>
+        <td class="detail-tablet__cell">
+          <div>
+            <span *ngIf="row.snfDailyRate != null && row.snfDailyRate != row.dailyRate" class="bolder white-space">${{row.snfDailyRate}}</span>
+            <span *ngIf="row.dailyRate != null" class="white-space" [ngClass]="{'crossed': row.snfDailyRate != null && row.snfDailyRate != row.dailyRate}">${{row.dailyRate}}</span>
+            <span>per day</span>
+          </div>
         </td>
+        <td class="detail-tablet__cell">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) | number:'1.2-2'}}</td>
+        <td class="detail-tablet__cell">
+          <div>
+            <span *ngIf="row.snfLiability != null &&row.snfLiability!=row.liability " class="bolder p-r-10">(${{row.snfLiability}})</span>
+            <span *ngIf="row.liability != null" [ngClass]="{'crossed': row.snfLiability != null && row.snfLiability!=row.liability }">(${{row.liability}})</span>
+          </div>
+        </td>
+        <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
         <td *ngIf="isFirst" class="detail-tablet__cell _total" [rowSpan]="rows.length">${{getTotal() | number:'1.2-2'}}</td>
       </tr>
+      <tr class="detail-tablet__message" *ngIf="tableData.data.isPrivatePay || tableData.data.isMedPending">
+        <td class="detail-tablet__cell"
+            colspan="7">
+          <div style="padding: 0">
+            <table class="message">
+              <tr class="detail-tablet__row">
+                <td colspan="7" class="message-text">Med pending patient is not eligibl for payment. Please provide
+                  proof of caverage
+                </td>
+                <td class="message-cell _btn">
+                  <button class="message-button"
+                          mat-raised-button color="warn"
+                          (click)="uploadInfo(tableData.data)">Upload</button>
+                </td>
+              </tr>
+              <tr class="detail-tablet__row">
+                <td class="detail-tablet__cell"><span style="padding-left: 7px">{{row.status}}</span></td>
+                <td class="detail-tablet__cell">
+                  <div [ngClass]="{'crossed': row.isDeleted, 'bolder': row.isAdded}">
+                    {{row.startDate | date:'MM/dd/yy'}}-{{row.endDate | date:'MM/dd/yy'}}
+                  </div>
+                </td>
+                <td class="detail-tablet__cell">{{getDateDiff(row)}} day(s)</td>
+                <td class="detail-tablet__cell">
+                  <div>
+                    <span *ngIf="row.snfDailyRate != null && row.snfDailyRate != row.dailyRate" class="bolder white-space">${{row.snfDailyRate}}</span>
+                    <span *ngIf="row.dailyRate != null" class="bolder white-space" [ngClass]="{'crossed': row.snfDailyRate != null && row.snfDailyRate != row.dailyRate}">${{row.dailyRate}}</span>
+                    <span>per day</span>
+                  </div>
+                </td>
+                <td class="detail-tablet__cell">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) | number:'1.2-2'}}</td>
+                <td class="detail-tablet__cell">
+                  <div>
+                    <span *ngIf="row.snfLiability != null &&row.snfLiability!=row.liability " class="bolder p-r-10">(${{row.snfLiability}})</span>
+                    <span *ngIf="row.liability != null" [ngClass]="{'crossed': row.snfLiability != null && row.snfLiability!=row.liability }">(${{row.liability}})</span>
+                  </div>
+                </td>
+                <td class="detail-tablet__cell" [ngClass]="{'crossed': row.isDeleted }">${{getDateDiff(row)*(row.snfDailyRate||row.dailyRate||0) - row.snfLiability||row.liability||0 | number:'1.2-2'}}</td>
+                <td *ngIf="isFirst" class="detail-tablet__cell _total" [rowSpan]="rows.length">${{getTotal() | number:'1.2-2'}}</td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewEncapsulation, Input } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ColumnApi, GridApi, AllCommunityModules } from '@ag-grid-community/all-modules';
 import { ActionsBtnComponent } from '../shared/components/actions-btn/actions-btn.component';
 import { ChatActionsComponent } from '../shared/components/chat-actions/chat-actions.component';
@@ -6,6 +6,7 @@ import { DetailTablet } from '../shared/components/detail-tablet/detail-tablet.c
 import { StatusComponent } from '../shared/components/status/status.component';
 import { HospicePatient } from '../../models/hospice-patient.model';
 import { PatientNameComponent } from '../shared/components/patient-name/patient-name.component';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'desktop',
@@ -13,8 +14,9 @@ import { PatientNameComponent } from '../shared/components/patient-name/patient-
   styleUrls: ['desktop.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class DesktopTable implements OnInit {
+export class DesktopTable implements OnChanges {
   @Input() rowData: HospicePatient[];
+  @Input() matTable: MatTableDataSource<HospicePatient>;
   @Output() openChat: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
   @Output() uploadInfo: EventEmitter<any> = new EventEmitter();
@@ -26,6 +28,7 @@ export class DesktopTable implements OnInit {
   public gridApi: GridApi;
   private rowHeight;
   private columnDefs;
+  public deltaRowDataMode: boolean = true;
 
   constructor() {
     this.columnDefs = [
@@ -99,7 +102,13 @@ export class DesktopTable implements OnInit {
   ];
 }
 
-  public ngOnInit(): void {
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.gridApi) {
+      this.gridApi.setRowData(this.rowData);
+      this.gridApi.redrawRows();
+      this.gridApi.resetRowHeights();
+    }
   }
 
   public onGridReady(param: any): void {
@@ -113,12 +122,8 @@ export class DesktopTable implements OnInit {
     this.gridApi.resetRowHeights();
   }
 
-  public onFirstDataRendered(event: any): void {
-    //this.countRow = event.lastRow;
-    //this.columnApi = event.columnApi;
-    //this.gridApi = event.api;
-    //this.gridApi.sizeColumnsToFit();
-    //this.gridApi.resetRowHeights();
+  public getRowNodeId(data: HospicePatient) {
+    return data.id;
   }
 
   public openDetailsModal(dataRow: any): void {

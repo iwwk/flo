@@ -1,13 +1,14 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 import { Moment } from 'moment';
+import { AgRendererComponent } from '@ag-grid-community/angular';
 
 @Component({
   selector: 'detail-tablet',
   templateUrl: './detail-tablet.component.html',
   styleUrls: ['detail-tablet.component.css'],
 })
-export class DetailTablet implements OnInit {
+export class DetailTablet implements AgRendererComponent {
   @Output() upload: EventEmitter<any> = new EventEmitter();
 
   public tableData: any;
@@ -20,7 +21,13 @@ export class DetailTablet implements OnInit {
     this.rows = tableData.data.serviceInfos;
   }
 
-  public ngOnInit(): void {}
+  public refresh(tableData: any): boolean {
+    this.tableData = tableData;
+    this.parentLineNumber = this.tableData.rowIndex;
+    this.rows = tableData.data.serviceInfos;
+
+    return true;
+  }
 
   public uploadInfo(data): void {
     this.tableData.context.componentParent.upload(data);

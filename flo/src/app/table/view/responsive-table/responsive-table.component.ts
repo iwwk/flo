@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HospicePatient } from '../../../models/hospice-patient.model';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   styleUrls: ['responsive-table.component.css'],
@@ -8,6 +9,7 @@ import { HospicePatient } from '../../../models/hospice-patient.model';
 })
 export class ResponsiveTableComponent implements OnInit {
   @Input() rowData: HospicePatient[];
+  @Input() matTable: MatTableDataSource<HospicePatient>;
 
   @Output() openChat: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
